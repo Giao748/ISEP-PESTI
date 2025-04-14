@@ -1,23 +1,26 @@
 # ISEP-PESTI
 
 
-## Planet Pulse:
-This is a OverAll Readme about a Project develloped  by the student: 
+## Project Planet Pulse Description:
+The current Readme describes the following Project being developed.
 Bernardo Barbosa 1220741
 
-O projeto a ser Descrito inclui:
 
-**Contexto:**
+# Project Description
 
-Permite-se um Website que Forneca historias sobre especies e as diponibilize para os utilizadores.
+## **Context**
 
-O Principal objetivo do site web a ser desennvolvido é dar a conhecer novas especies ou noticias sobre os animais na nossa terra: :
+A website is to be created that provides stories about species and makes them available to users.
 
-O planeta que habitamos enfrenta uma pressão sem precedentes devido ao crescimento acelerado da economia e da população. Este desafio exige respostas estruturadas que podem ser promovidas por iniciativas da sociedade civil para a promoção da sustentabilidade ambiental. Estas iniciativas podem, em particular, contribuir significativamente para a adoção de boas práticas e para a mitigação de comportament os prejudiciais ao meio ambiente.
-A divulgação de iniciativas ambientais e a participação ativa dos cidadãos na identificação e comunicação de boas e más práticas ambientais na sua região contribuirão para uma maior consciencialização, reforçando o sentido de responsabilidade e promovendo atitudes sustentáveis com impacto duradouro nas gerações atuais e futuras.
+The main goal of the website to be developed is to raise awareness about new species or news regarding animals on our planet:
 
+The planet we inhabit is facing unprecedented pressure due to the rapid growth of the economy and population. This challenge requires structured responses that can be promoted through civil society initiatives aimed at fostering environmental sustainability. These initiatives can, in particular, contribute significantly to the adoption of good practices and to the mitigation of environmentally harmful behaviors.
 
+The dissemination of environmental initiatives and the active participation of citizens in identifying and reporting both good and bad environmental practices in their region will contribute to greater awareness, reinforce a sense of responsibility, and promote sustainable attitudes with lasting impact on both current and future generations.
 
-**Objetivos**
-	Desenvolvimento de uma aplicação web para visualizar, submeter, pesquisar e gerir notícias sobre práticas de sustentabilidade ambiental e biodiversidade criadas por equipas internacionais de jovens. Incluirá as funcionalidades necessárias para registar utilizadores, suportar a pesquisa e navegação, submissão, validação e publicação automática das notícias.
-	O objetivo é dotar os jovens de ferramentas para cooperar na criação e publicação de conteúdos que promovam boas iniciativas ambientais e denunciem práticas insustentáveis. 
+## **Objectives**
+
+Development of a web application to view, submit, search for, and manage news related to environmental sustainability practices and biodiversity, created by international teams of young people. It will include the necessary features to allow user registration, support for browsing and searching, news submission, validation, and automatic publishing.
+
+The aim is to equip young people with tools to collaborate in the creation and publication of content that promotes good environmental initiatives and exposes unsustainable practices.
+ 
