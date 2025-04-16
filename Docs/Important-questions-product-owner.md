@@ -48,3 +48,5 @@ Serei obivmanete eu o scrum master. Haverão defesas? Aprsesentações?
 (Ex)
   - Relational Domain Models
   - 
+
+![ldskd](Status-machine/State-machine.png)
