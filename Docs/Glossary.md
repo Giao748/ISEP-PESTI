@@ -56,6 +56,20 @@ For the sake of organization,  the list was sorted  of terms by their aggregate'
 
 
 
+
+## Status Machine:
+
+The following Glossary has a description for all given States
+
+
+| Expression                  | Meaning                                                                                           |
+|-----------------------------|---------------------------------------------------------------------------------------------------|
+| **(PC) PodcastTemplate**    | A **template entity** for structuring news in podcast format.                                     |
+| **(PC) Introduction**       | The opening segment of the podcast.                                                               |
+| **(PC) Development**        | The main discussion or body of the podcast episode.                                               |
+| **(PC) Conclusion**         | The closing summary or takeaway of the podcast.                                                   |
+| **(PC) Type**               | An **enum** identifying the type of podcast (e.g., interview, narrative, debate).      
+
 ## Generic Terms
 
 | Expression          | Meaning                                                                       |

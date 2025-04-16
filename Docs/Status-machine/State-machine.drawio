@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="7NFeSKWy8hpLkIbewxwy" name="Page-1">
-        <mxGraphModel dx="1722" dy="580" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="1767" dy="1296" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -52,7 +52,15 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="17" value="validating" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                <mxCell id="64" style="edgeStyle=none;html=1;" edge="1" parent="1" source="17" target="21">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="65" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;rejected&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="64">
+                    <mxGeometry x="-0.1731" y="-2" relative="1" as="geometry">
+                        <mxPoint y="18" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="17" value="validation" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
                     <mxGeometry x="270" y="610" width="90" height="90" as="geometry"/>
                 </mxCell>
                 <mxCell id="26" style="edgeStyle=none;html=1;" parent="1" source="19" target="6" edge="1">
@@ -76,7 +84,7 @@
                 <mxCell id="37" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="21" target="33" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" value="Deleted" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                <mxCell id="21" value="deleted" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
                     <mxGeometry x="530" y="690" width="90" height="90" as="geometry"/>
                 </mxCell>
                 <mxCell id="25" style="edgeStyle=none;html=1;entryX=0.069;entryY=0.782;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="19" target="21" edge="1">
@@ -96,27 +104,25 @@
                     <mxGeometry x="607.5" y="800" width="60" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="41" value="&lt;font style=&quot;scrollbar-color: light-dark(#e2e2e2, #4b4b4b)&lt;br/&gt;&#x9;&#x9;&#x9;&#x9;&#x9;light-dark(#fbfbfb, var(--dark-panel-color)); font-size: 14px;&quot;&gt;Picked up by validators from&amp;nbsp;&lt;/font&gt;&lt;div style=&quot;scrollbar-color: light-dark(#e2e2e2, #4b4b4b)&lt;br/&gt;&#x9;&#x9;&#x9;&#x9;&#x9;light-dark(#fbfbfb, var(--dark-panel-color));&quot;&gt;&lt;font style=&quot;scrollbar-color: light-dark(#e2e2e2, #4b4b4b)&lt;br/&gt;&#x9;&#x9;&#x9;&#x9;&#x9;light-dark(#fbfbfb, var(--dark-panel-color));&quot; size=&quot;3&quot;&gt;dash board&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="350" y="530" width="200" height="50" as="geometry"/>
+                    <mxGeometry x="320" y="535" width="200" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="43" value="&lt;span style=&quot;color: rgb(63, 63, 63); font-family: Helvetica; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;deleted&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="43" value="&lt;span style=&quot;color: rgb(63, 63, 63); font-family: Helvetica; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Deleted&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="440" y="820" width="70" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="46" value="&lt;b style=&quot;scrollbar-color: light-dark(#e2e2e2, #4b4b4b)&lt;br/&gt;&#x9;&#x9;&#x9;&#x9;&#x9;light-dark(#fbfbfb, var(--dark-panel-color)); font-size: 24px; color: rgb(63, 63, 63);&quot;&gt;End&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="542.5" y="910" width="65" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="54" value="&lt;span style=&quot;color: rgb(63, 63, 63); font-size: 14px;&quot;&gt;Refused&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
-                    <mxGeometry x="109.99773254150428" y="510.00412606042505" as="geometry"/>
+                <mxCell id="54" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;edit/send feedback&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="99.99773254150428" y="530.004126060425" as="geometry"/>
                 </mxCell>
-                <mxCell id="56" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="6" target="21" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="490" y="350"/>
-                            <mxPoint x="575" y="520"/>
-                        </Array>
-                    </mxGeometry>
+                <mxCell id="66" style="edgeStyle=none;html=1;elbow=horizontal;" edge="1" parent="1" source="6" target="6">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="57" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;deleted&lt;/font&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="530" y="370" width="50" height="40" as="geometry"/>
+                <mxCell id="68" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;invalid rules (Ex: exceed number of maxum charecters&amp;nbsp; per text)&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="395" y="290" width="195" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="Sugestion Next Meeting&lt;div&gt;Remove Validaiton Comment&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" vertex="1" parent="1">
+                    <mxGeometry x="140" y="930" width="100" height="120" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
