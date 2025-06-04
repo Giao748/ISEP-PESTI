@@ -16,17 +16,18 @@ For the sake of organization,  the list was sorted  of terms by their aggregate'
 
 ---
 
-## Student
-| Expression        | Meaning                                                                                                                 |
-|-------------------|-------------------------------------------------------------------------------------------------------------------------|
-| (ST) Student      | The **Student** entity represents a user enrolled in a team who can submit content (e.g., news, webpages, or podcasts). |
-| (ST) Student_Name | The full name of the student, often shown as the author of content.                                                     |
-| (TE) Teacher      | The **Teacher** entity represents a user who supervises students and can be linked to multiple teams.                   |
-| (TM) Team         | The **Team** is a group of students working together, possibly under the supervision of a teacher.                      |
+## Student Teacher and Team
+| Expression        | Meaning                                                                                                          |
+|-------------------|------------------------------------------------------------------------------------------------------------------|
+| (ST) Student      | The **Student** entity represents a user enrolled in a team who can submit content (news:webpages, or podcasts). |
+| (ST) Student_Name | The full name of the student, often shown **as the author** of content.                                          |
+| (TE) Teacher      | The **Teacher** entity represents a user who supervises students and can be linked to multiple teams.            |
+| (TM) Team         | The **Team** is a group of students working together, possibly under the supervision of a teacher.               |
 
 ## News/Add
 | Expression                 | Meaning                                                                                                                |
 |----------------------------|------------------------------------------------------------------------------------------------------------------------|
+| **(NW) Category**          | Every News had its own related category: Only good Practice enviromental Problem possible for now.                     |
 | **(NW) NewsAdd**           | The **NewsAdd** entity represents a submitted news item that may be validated and published.                           |
 | **(NW) validation_status** | A **value object** indicating whether a news item is validated, pending, or rejected.                                  |
 | **(NW) validator**         | The user or actor responsible for validating a news item.                                                              |
@@ -78,12 +79,11 @@ The following Glossary has a description for all given States
 | Administrator       | Actor responsible for user management and system settings.                    |
 | Student             |                                                                               |
 | Professor           |                                                                               |
-| Collaborator        |                                                                               |
+| Collaborator        | Not defined for now                                                           |
 | Add/New             | Action of creating new entities or content.                                   |
 | Backlog             | List of tasks or features defined for completion or development.              |
-| Category            | ?? To properly adjust                                                         |
 | User Stories        | Short descriptions of features from the user/client's perspective.            |
-
+****
 
 **Note 2:**
 - If a Term is a **Value Object**, it will be specified as **a** (e.g., *a pan*).

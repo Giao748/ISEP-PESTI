@@ -1,0 +1,77 @@
+"use client";
+import React from "react";
+import styles from "./HomePage.module.css";
+
+function HomePage() {
+  return (
+    <div className="min-h-screen bg-gray-100 text-gray-800">
+      {/* Navbar */}
+      <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-md">
+        <div className="flex items-center space-x-4">
+          <div className="bg-gray-300 w-10 h-10 rounded-full flex items-center justify-center font-bold">
+            PP
+          </div>
+          <ul className="hidden md:flex space-x-6 font-semibold">
+            <li>Home</li>
+            <li>Posts</li>
+            <li>Gamification</li>
+            <li>About</li>
+          </ul>
+        </div>
+        <div className="space-x-4">
+          <button className="text-sm">Login</button>
+          <button className="bg-blue-600 text-white px-4 py-1 rounded">Register</button>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.overlay} />
+        <div className={styles.heroContent}>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            Youth transforming the future and the planet!
+          </h1>
+          <button className="mt-6 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-md">
+            Start Now!
+          </button>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="py-20 px-6 md:px-20 bg-white text-center">
+        <h2 className="text-3xl font-bold mb-12 text-gray-900">How does it work?</h2>
+        <div className="grid md:grid-cols-3 gap-12">
+          <div className="flex flex-col items-center">
+            <div className="text-5xl font-bold text-green-600 mb-4">1</div>
+            <p className="text-lg text-gray-700">Create photos, videos, or content about sustainability</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="text-5xl font-bold text-green-600 mb-4">2</div>
+            <p className="text-lg text-gray-700">Share with the PlanetPulse community and generate impact</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="text-5xl font-bold text-green-600 mb-4">3</div>
+            <p className="text-lg text-gray-700">Earn points and rewards with your participation</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Recent Highlights */}
+      <section className="bg-gray-50 py-16 px-6 md:px-20">
+        <h2 className="text-2xl font-bold mb-8 text-center">Recent Highlights</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[1, 2, 3].map((_, idx) => (
+            <div key={idx} className="bg-white shadow-md rounded-md overflow-hidden text-center p-4">
+              <div className="bg-gray-100 h-40 flex items-center justify-center mb-4">Placeholder</div>
+              <h3 className="text-lg font-semibold mb-1">Post title</h3>
+              <p className="text-sm text-gray-500 mb-1">Organization Name</p>
+              <p className="text-sm text-gray-400">Jan 1, 2024</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+export default HomePage;
