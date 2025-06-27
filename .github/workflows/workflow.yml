@@ -1,0 +1,24 @@
+name: 🚀 Deploy to VM
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Connect and deploy to VM
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: 193.136.62.204
+        username: uabc
+        key: ${{ secrets.VM_PRIVATE_KEY }}
+        port: 22
+        script: |
+          cd ~/ISEP-PESTI
+          git pull origin main
+          npm install
+          npm run build
+          sudo systemctl restart planetpulse
