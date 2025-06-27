@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
 import styles from "./HomePage.module.css";
+import Link from "next/link";
 
 function HomePage() {
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-800">
+    <div className="min-h-screen bg-gray-100 text-gray-800 flex flex-col">
       {/* Navbar */}
       <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-md">
         <div className="flex items-center space-x-4">
@@ -12,26 +13,40 @@ function HomePage() {
             PP
           </div>
           <ul className="hidden md:flex space-x-6 font-semibold">
-            <li>Home</li>
-            <li>Posts</li>
-            <li>Gamification</li>
-            <li>About</li>
+            <li>
+              <a
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                window.location.reload();
+              }}>Home</a>
+            </li>
+            <li><Link href="/posts">Posts</Link></li>
+            <li><Link href="/partners">Partners</Link></li>
+            <li><Link href="/gamification">Gamification</Link></li>
+            <li><Link href="/about">About</Link></li>
           </ul>
         </div>
-        <div className="space-x-4">
-          <button className="text-sm">Login</button>
-          <button className="bg-blue-600 text-white px-4 py-1 rounded">Register</button>
+        <div className="space-x-4 ml-auto flex items-center">
+          <Link href="/login" className="text-sm hover:underline transition-colors">Login</Link>
+          <Link href="/register" className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition">Register</Link>
         </div>
       </nav>
 
       {/* Hero Section */}
       <section className={styles.hero}>
+        <video autoPlay muted loop playsInline className="absolute w-full h-full object-cover z-0">
+          <source src="/pp-turtle.mp4" type="video/mp4" />
+        </video>
         <div className={styles.overlay} />
         <div className={styles.heroContent}>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
             Youth transforming the future and the planet!
           </h1>
-          <button className="mt-6 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-md">
+          <button
+            className="mt-6 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-md"
+            onClick={() => window.location.href = "/posts"}
+          >
             Start Now!
           </button>
         </div>
@@ -70,6 +85,27 @@ function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-white border-t py-8 px-6 text-sm text-gray-600">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-center md:text-left">
+            <p>&copy; PlanetPulse 2025. All rights reserved.</p>
+            <div className="space-x-4 mt-2">
+              <Link href="/about">About</Link>
+              <Link href="/contact">Contact</Link>
+              <Link href="/terms">Terms & Conditions</Link>
+              <Link href="/privacy">Privacy Policy</Link>
+            </div>
+          </div>
+          <div className="flex space-x-4">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">TikTok</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
