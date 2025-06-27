@@ -17,7 +17,7 @@ jobs:
         key: ${{ secrets.VM_PRIVATE_KEY }}
         port: 22
         script: |
-          cd ~/ISEP-PESTI
+          cd ~/ISEP-PESTI/planetpulse-next
           git pull origin main
           npm install
           npm run build
