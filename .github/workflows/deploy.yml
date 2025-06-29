@@ -1,24 +1,16 @@
-name: 🚀 Deploy to VM
+name: Deploy Application
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-
+    runs-on: self-hosted
     steps:
-    - name: Connect and deploy to VM
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: 193.136.62.204
-        username: uabc
-        key: ${{ secrets.VM_PRIVATE_KEY }}
-        port: 22
-        script: |
-          cd ~/ISEP-PESTI/planetpulse-next
-          git pull origin main
-          npm install
-          npm run build
-          sudo systemctl restart planetpulse
+      - name: Pull latest code and restart app
+        run: |
+          cd /home/uabc/ISEP-PESTI/planetpulse-next
+          git pull
+          sudo systemctl restart planetpulse.service
