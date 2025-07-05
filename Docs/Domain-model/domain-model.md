@@ -1,4 +1,10 @@
-## Planet Pulse Domain Model:
+##  Planet Pulse Domain Model
 
-The following file displays the domain model which the **GILT association** thinks to be representative of its business ideas and logic:
-![ Model:**](Domain-model.png)
+Welcome! Below you'll find the **domain model** that the **GILT Association** believes best represents its business concepts and logic.
+
+
+
+![Domain Model](Domain-model.svg)
+
+
+---
