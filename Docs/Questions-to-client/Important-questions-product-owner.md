@@ -102,9 +102,9 @@ Seja como for, como está, está bem para já. Depois alteramos, se necessário,
 **Q10** Dada a seguinte máquina de Estados:
  ![State-Machine](Status-machine/State-machine.png) 
 
-**Q11** When final version is delivered can it be added to project?.
+**Q11** When final version is delivered can it be added to project?
 
-Não vejo sentido em deixarmos estado de validação aqui, podeirmaos completamente remover o estado , ou faria sentido especificar o ato dos professor e adminsitrador irem a dashboard de todos as add pending , e editarem , aceitarem ou rejeitarem.
+**Answer:** Não vejo sentido em deixarmos estado de validação aqui, podemos completamente remover o estado, ou faria sentido especificar o ato dos professores e administradores irem à dashboard de todos os ads pendentes, e editarem, aceitarem ou rejeitarem.
 
 **Q12** Como funcionará ao certo a gamificação para os alunos?
 **Q13** Os professores também podem aceitar/ remover alunos dos posts do site tal como os validadores?.

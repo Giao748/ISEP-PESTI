@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="D3sRz6WudV78egM3DdaS" name="Page-1">
-        <mxGraphModel dx="1175" dy="755" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="370" dy="616" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -79,7 +79,7 @@
                 <mxCell id="55" value="&amp;lt;&amp;lt;Vo&amp;gt;&amp;gt;&lt;div&gt;Image&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="386" y="1794" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="58" value="WebPageTemplate" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;strokeColor=light-dark(#ff0a0a, #ededed);width=116;height=50;" parent="1" vertex="1">
+                <mxCell id="58" value="WebPagePostTemplate" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;strokeColor=light-dark(#ff0a0a, #ededed);width=116;height=50;" parent="1" vertex="1">
                     <mxGeometry x="30" y="1754" width="510" height="326" as="geometry"/>
                 </mxCell>
                 <mxCell id="59" value="Student" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;strokeColor=#FF300D;" parent="1" vertex="1">
@@ -201,7 +201,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="70" value="&amp;lt;&amp;lt;root&amp;gt;&amp;gt;&lt;div&gt;&amp;lt;&amp;lt;entitty&amp;gt;&amp;gt;&lt;/div&gt;&lt;div&gt;Member&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FF300D;" parent="1" vertex="1">
-                    <mxGeometry x="80" y="860" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="90" y="860" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="115" style="edgeStyle=none;html=1;" parent="1" source="85" target="70" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -228,7 +228,7 @@
                 <mxCell id="85" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;lt;&amp;lt;root&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;scrollbar-color: light-dark(#e2e2e2, #4b4b4b)&lt;br/&gt;&#x9;&#x9;&#x9;&#x9;&#x9;light-dark(#fbfbfb, var(--dark-panel-color));&quot;&gt;&amp;lt;&amp;lt;entitty&amp;gt;&amp;gt;&lt;/div&gt;&lt;div style=&quot;scrollbar-color: light-dark(#e2e2e2, #4b4b4b)&lt;br/&gt;&#x9;&#x9;&#x9;&#x9;&#x9;light-dark(#fbfbfb, var(--dark-panel-color));&quot;&gt;Team&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="116" y="1090" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="93" value="PodcastTemplate" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;strokeColor=light-dark(#ff0a0a, #ededed);width=90;height=40;" parent="1" vertex="1">
+                <mxCell id="93" value="PodcastPostTemplate" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;strokeColor=light-dark(#ff0a0a, #ededed);width=90;height=40;" parent="1" vertex="1">
                     <mxGeometry x="592" y="1760" width="396" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="163" style="edgeStyle=none;html=1;" parent="1" source="94" target="162" edge="1">
@@ -289,6 +289,9 @@
                 </mxCell>
                 <mxCell id="260" value="&lt;br&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&amp;lt;&amp;lt;vo&amp;gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&amp;lt;&amp;lt;Id&amp;gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;Email&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;" parent="1" vertex="1">
                     <mxGeometry x="280" y="720" width="120" height="62.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="265" value="Primeira fase:&lt;div&gt;Organização como uma string&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
+                    <mxGeometry x="669" y="1044" width="158" height="125" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
