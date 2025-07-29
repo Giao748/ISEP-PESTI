@@ -1,8 +1,10 @@
 {
     "sqltools.connections": [
+   
+       
         {
             "mysqlOptions": {
-                "authProtocol": "default",
+                "authProtocol": "mysql_native_password",
                 "enableSsl": "Disabled"
             },
             "previewLimit": 50,
@@ -10,28 +12,14 @@
             "port": 3306,
             "driver": "MariaDB",
             "name": "pp",
-            "group": "planetPulse",
-            "database": "planet-pulse-db",
-            "username": "bernardo",
-            "connectionTimeout": 10
-        },
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MariaDB",
-            "name": "pp3",
+            "group": "pp",
+            "database": "PlanetPulse",
             "username": "root",
-            "database": "planet-pulse-db",
-            "connectionTimeout": 10
+            "password": "Setamurcha12"
         },
         {
             "mysqlOptions": {
-                "authProtocol": "default",
+                "authProtocol": "mysql_native_password",
                 "enableSsl": "Disabled"
             },
             "previewLimit": 50,
@@ -39,10 +27,9 @@
             "port": 3306,
             "driver": "MariaDB",
             "name": "PlanetPulse",
-            "group": "pp",
-            "database": "planet-pulse",
+            "database": "PlanetPulse",
             "username": "root",
-            "password": "Setamurcha12"
+            "password": "Setamurcha12!"
         }
     ]
 }
