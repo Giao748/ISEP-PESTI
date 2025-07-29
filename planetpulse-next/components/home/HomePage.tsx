@@ -2,34 +2,70 @@
 import React from "react";
 import styles from "./HomePage.module.css";
 import Link from "next/link";
+import LanguageSelector from "../LanguageSelector";
+import { event } from "../../lib/gtags"; // <- tracking GA
+import { useRouter } from "next/navigation";
 
 function HomePage() {
+  const router = useRouter();
+
+  const handleStartNowClick = () => {
+    event({
+      action: "start_now_click",
+      category: "engagement",
+      label: "Start Now Button",
+      value: 1,
+    });
+
+    // Aguarda um pouco antes de redirecionar para garantir que o evento é enviado
+    setTimeout(() => {
+      router.push("/posts");
+    }, 150);
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 text-gray-800 flex flex-col">
       {/* Navbar */}
       <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-md">
         <div className="flex items-center space-x-4">
-          <div className="bg-gray-300 w-10 h-10 rounded-full flex items-center justify-center font-bold">
+          <div
+            className="bg-gray-300 w-10 h-10 rounded-full flex items-center justify-center font-bold cursor-pointer"
+            onClick={() => window.location.reload()}
+          >
             PP
           </div>
-          <ul className="hidden md:flex space-x-6 font-semibold">
+          <ul className="hidden md:flex items-center space-x-6 font-semibold">
             <li>
               <a
-              href="/"
-              onClick={e => {
-                e.preventDefault();
-                window.location.reload();
-              }}>Home</a>
+                href="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.reload();
+                }}
+              >
+                Home
+              </a>
             </li>
             <li><Link href="/posts">Posts</Link></li>
             <li><Link href="/partners">Partners</Link></li>
             <li><Link href="/gamification">Gamification</Link></li>
             <li><Link href="/about">About</Link></li>
+            <li className="flex items-center">
+              <LanguageSelector />
+            </li>
           </ul>
         </div>
+
         <div className="space-x-4 ml-auto flex items-center">
-          <Link href="/login" className="text-sm hover:underline transition-colors">Login</Link>
-          <Link href="/register" className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition">Register</Link>
+          <Link href="/login" className="text-sm hover:underline transition-colors">
+            Login
+          </Link>
+          <Link
+            href="/register"
+            className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition"
+          >
+            Register
+          </Link>
         </div>
       </nav>
 
@@ -45,7 +81,7 @@ function HomePage() {
           </h1>
           <button
             className="mt-6 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-md"
-            onClick={() => window.location.href = "/posts"}
+            onClick={handleStartNowClick}
           >
             Start Now!
           </button>

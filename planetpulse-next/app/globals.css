@@ -5,7 +5,7 @@
   --foreground: #171717;
 }
 
-@theme inline {
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -24,3 +24,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* Remove a barra azul do Google Translate */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+/* Remove o padding do body que o Google Translate adiciona */
+body {
+  top: 0px !important;
+}
+
+/* Remove a div de overlay extra que às vezes aparece */
+body > .skiptranslate {
+  display: none !important;
+}
+
+
