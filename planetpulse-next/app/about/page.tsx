@@ -1,8 +1,9 @@
-import { Nunito, Lato } from "next/font/google";
+// import { Nunito, Lato } from "next/font/google";
 import Link from "next/link";
 
-const { className: nunitoClass } = Nunito({ subsets: ["latin"], weight: ["700"] });
-const { className: latoClass } = Lato({ subsets: ["latin"], weight: ["400"] });
+// Using fallback fonts instead of Google Fonts due to connectivity issues
+// const nunito = Nunito({ subsets: ["latin"], weight: ["700"] });
+// const lato = Lato({ subsets: ["latin"], weight: ["400"] });
 
 export default function AboutPage() {
   return (
@@ -19,13 +20,13 @@ export default function AboutPage() {
 
         <div>
           <h2
-            className={`text-6xl md:text-7xl font-extrabold mb-10 text-center drop-shadow-lg ${nunitoClass} text-green-800 dark:text-green-300`}
+            className="text-6xl md:text-7xl font-extrabold mb-10 text-center drop-shadow-lg text-green-800 dark:text-green-300"
           >
             About <span className="text-green-500 dark:text-green-200">PlanetPulse</span>
           </h2>
 
           <p
-            className={`text-2xl md:text-3xl text-gray-900 dark:text-gray-100 leading-snug mb-8 text-center font-semibold ${latoClass}`}
+            className="text-2xl md:text-3xl text-gray-900 dark:text-gray-100 leading-snug mb-8 text-center font-semibold"
           >
             Empowering youth to act on sustainability and create a positive impact!
           </p>
