@@ -1,30 +1,58 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function RegisterPage() {
   type Role = "Member" | "Admin" | "Partner" | "Validator";
   
   const [form, setForm] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     role: "Member" as Role,
     nationality: "",
+    gdprConsent: false,
+    dataProcessingConsent: false,
+    marketingConsent: false,
   });
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value, type } = e.target;
+    
+    if (type === "checkbox") {
+      const checked = (e.target as HTMLInputElement).checked;
+      setForm({ ...form, [name]: checked });
+    } else {
+      setForm({ ...form, [name]: value });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+    setIsLoading(true);
+
+    // Validate GDPR consent
+    if (!form.gdprConsent) {
+      setError("You must agree to the GDPR consent to create an account.");
+      setIsLoading(false);
+      return;
+    }
+
+    // Validate password strength
+    if (form.password.length < 8) {
+      setError("Password must be at least 8 characters long.");
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const res = await fetch("/api/register", {
@@ -33,15 +61,20 @@ export default function RegisterPage() {
         body: JSON.stringify(form),
       });
 
+      const data = await res.json();
+
       if (res.ok) {
         setSuccess(true);
-        router.push("/login"); // Redirecionar após registo bem-sucedido
+        setTimeout(() => {
+          router.push("/login");
+        }, 2000);
       } else {
-        const data = await res.json();
-        setError(data.message || "Failed to register.");
+        setError(data.error || "Failed to register.");
       }
     } catch (err: any) {
-      setError("Something went wrong.");
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -49,23 +82,29 @@ export default function RegisterPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-md shadow-md w-full max-w-md"
+        className="bg-white p-8 rounded-md shadow-md w-full max-w-lg"
       >
         <h1 className="text-2xl font-bold mb-6 text-center">Create an Account</h1>
 
-        {error && <p className="text-red-500 mb-4">{error}</p>}
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            {error}
+          </div>
+        )}
         {success && (
-          <p className="text-green-600 text-sm mb-4">Account created successfully!</p>
+          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+            Account created successfully! Redirecting to login...
+          </div>
         )}
 
         <input
           type="text"
-          name="name"
-          placeholder="Name"
-          value={form.name}
+          name="username"
+          placeholder="Username"
+          value={form.username}
           onChange={handleChange}
           required
-          className="w-full p-3 mb-4 border rounded"
+          className="w-full p-3 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <input
@@ -75,26 +114,26 @@ export default function RegisterPage() {
           value={form.email}
           onChange={handleChange}
           required
-          className="w-full p-3 mb-4 border rounded"
+          className="w-full p-3 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <input
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Password (min. 8 characters)"
           value={form.password}
           onChange={handleChange}
           required
-          className="w-full p-3 mb-4 border rounded"
+          minLength={8}
+          className="w-full p-3 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-
 
         <select
           name="nationality"
           value={form.nationality}
           onChange={handleChange}
           required
-          className="w-full p-3 mb-4 border rounded"
+          className="w-full p-3 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="">Select Nationality</option>
           <option value="Angolan">Angolan</option>
@@ -120,16 +159,86 @@ export default function RegisterPage() {
           <option value="US">US</option>
         </select>
 
-        <p className="text-xs text-gray-500 mt-4 text-center">
-          After submitting, your account will be created in the system.
-        </p>
+        {/* GDPR Consent Section */}
+        <div className="border-t pt-4 mb-4">
+          <h3 className="font-semibold mb-3 text-gray-700">Data Processing Consent</h3>
+          
+          <div className="mb-3">
+            <label className="flex items-start space-x-2">
+              <input
+                type="checkbox"
+                name="gdprConsent"
+                checked={form.gdprConsent}
+                onChange={handleChange}
+                required
+                className="mt-1 rounded focus:ring-2 focus:ring-blue-500"
+              />
+              <span className="text-sm text-gray-600">
+                <strong>Required:</strong> I agree to the processing of my personal data 
+                for account creation and platform functionality. I understand my rights 
+                under GDPR including access, rectification, and erasure. 
+                <Link href="/privacy-policy" className="text-blue-600 hover:underline ml-1">
+                  Read Privacy Policy
+                </Link>
+              </span>
+            </label>
+          </div>
+
+          <div className="mb-3">
+            <label className="flex items-start space-x-2">
+              <input
+                type="checkbox"
+                name="dataProcessingConsent"
+                checked={form.dataProcessingConsent}
+                onChange={handleChange}
+                className="mt-1 rounded focus:ring-2 focus:ring-blue-500"
+              />
+              <span className="text-sm text-gray-600">
+                <strong>Optional:</strong> I consent to the processing of my data for 
+                platform improvements and analytics (you can withdraw this consent at any time)
+              </span>
+            </label>
+          </div>
+
+          <div className="mb-4">
+            <label className="flex items-start space-x-2">
+              <input
+                type="checkbox"
+                name="marketingConsent"
+                checked={form.marketingConsent}
+                onChange={handleChange}
+                className="mt-1 rounded focus:ring-2 focus:ring-blue-500"
+              />
+              <span className="text-sm text-gray-600">
+                <strong>Optional:</strong> I consent to receiving marketing communications 
+                and newsletters about environmental initiatives
+              </span>
+            </label>
+          </div>
+        </div>
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+          disabled={isLoading || !form.gdprConsent}
+          className={`w-full py-3 rounded font-medium transition-colors ${
+            isLoading || !form.gdprConsent
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700 text-white"
+          }`}
         >
-          Register
+          {isLoading ? "Creating Account..." : "Register"}
         </button>
+
+        <p className="text-xs text-gray-500 mt-4 text-center">
+          By creating an account, you agree to our data processing practices 
+          in accordance with GDPR regulations.
+        </p>
+
+        <p className="text-center mt-4">
+          <Link href="/login" className="text-blue-600 hover:underline">
+            Already have an account? Login here
+          </Link>
+        </p>
       </form>
     </div>
   );
