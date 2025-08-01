@@ -1,2 +1,3 @@
+SELECT * FROM users;
 
-select * from users audit_log
+SELECT * FROM members

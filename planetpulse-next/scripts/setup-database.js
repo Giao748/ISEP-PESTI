@@ -14,14 +14,14 @@ async function setupDatabase() {
   const config = {
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
+    password: process.env.DB_PASSWORD || 'Setamurcha12!',
     port: parseInt(process.env.DB_PORT || '3306'),
   };
 
   const dbName = process.env.DB_NAME || 'PlanetPulse';
 
   try {
-    console.log('🔌 Connecting to MariaDB...');
+    console.log('Connecting to MariaDB...');
     
     // Connect without selecting a database first
     const connection = await mysql.createConnection(config);
@@ -35,7 +35,7 @@ async function setupDatabase() {
     // Use the database
     await connection.execute(`USE \`${dbName}\``);
     
-    console.log('🛠️  Creating tables...');
+    console.log('  Creating tables...');
     
     // Create users table with GDPR compliance
     await connection.execute(`
@@ -77,7 +77,7 @@ async function setupDatabase() {
       ) ENGINE=InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
     `);
     
-    console.log('✅ Tables created successfully');
+    console.log(' Tables created successfully');
     
     // Show table status
     const [tables] = await connection.execute(`
@@ -87,20 +87,20 @@ async function setupDatabase() {
       ORDER BY TABLE_NAME
     `, [dbName]);
     
-    console.log('\n📋 Database tables:');
+    console.log('\nDatabase tables:');
     console.table(tables);
     
     await connection.end();
-    
-    console.log('\n🎉 Database setup completed successfully!');
-    console.log('\n📝 Next steps:');
+
+    console.log('Database setup completed successfully!');
+    console.log('\nNext steps:');
     console.log('1. Start your application: npm run dev');
     console.log('2. Test database connection: GET /api/db-test');
     console.log('3. Test user registration: POST /api/register');
     
   } catch (error) {
-    console.error('❌ Database setup failed:', error.message);
-    console.error('\n🔍 Troubleshooting:');
+    console.error(' Database setup failed:', error.message);
+    console.error('\n Troubleshooting:');
     console.error('1. Make sure MariaDB/MySQL is running');
     console.error('2. Check your .env.local file for correct database credentials');
     console.error('3. Ensure the database user has CREATE privileges');
