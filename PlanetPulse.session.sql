@@ -1,21 +1,2 @@
 
-select * from users;
-
-
-CREATE TABLE IF NOT EXISTS users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(50) NOT NULL UNIQUE,
-  email VARCHAR(100) NOT NULL UNIQUE,
-  role ENUM('Admin', 'Validator', 'Member') DEFAULT 'Member',
-  password VARCHAR(255) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS members (
-  id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
-  username VARCHAR(100) NOT NULL UNIQUE,
-  email VARCHAR(100) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
-  nationality VARCHAR(100) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+select * from users audit_log

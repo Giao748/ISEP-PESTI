@@ -16,6 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics(app);
 
-
+// Initialize Firebase Auth only (we don't need Firestore anymore)
 const auth = getAuth(app);
+
 export { auth };

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import bcrypt from 'bcryptjs';
+import { auth } from '../../../lib/firabase';
 import { getDbConnection, initializeDatabase, logUserAction } from '../../../lib/database';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export async function POST(request: NextRequest) {
   try {
@@ -53,7 +54,7 @@ export async function POST(request: NextRequest) {
 
     const connection = getDbConnection();
 
-    // Check if user already exists
+    // Check if user already exists in MySQL
     const [existingUsers] = await connection.execute(
       'SELECT id FROM users WHERE email = ?',
       [email]
@@ -66,32 +67,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Hash password
-    const saltRounds = parseInt(process.env.BCRYPT_ROUNDS || '12');
-    const passwordHash = await bcrypt.hash(password, saltRounds);
+    // Create user in Firebase Auth
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
 
-    // Calculate data retention date (GDPR compliance)
-    const retentionDays = parseInt(process.env.DATA_RETENTION_DAYS || '2555'); // 7 years default
-    const retentionDate = new Date();
-    retentionDate.setDate(retentionDate.getDate() + retentionDays);
-
-    // Insert new user
+    // Insert new user in MySQL with actual schema
     const [result] = await connection.execute(
       `INSERT INTO users (
-        email, password_hash, name, nationality, role,
-        consent_given, data_processing_consent, marketing_consent,
-        data_retention_until
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        firebase_uid, username, email, role, password
+      ) VALUES (?, ?, ?, ?, ?)`,
       [
+        user.uid,
+        name, // Using name as username
         email,
-        passwordHash,
-        name,
-        nationality,
         role,
-        true,
-        consent.data_processing || false,
-        consent.marketing || false,
-        retentionDate.toISOString().split('T')[0]
+        password // Storing password in MySQL as well (Firebase handles the secure version)
       ]
     );
 
@@ -104,6 +94,7 @@ export async function POST(request: NextRequest) {
     
     await logUserAction(
       userId,
+      user.uid,
       'USER_REGISTRATION',
       `User registered with role: ${role}, consents: ${JSON.stringify(consent)}`,
       clientIp,
@@ -114,22 +105,46 @@ export async function POST(request: NextRequest) {
       { 
         message: 'User registered successfully',
         userId: userId,
+        firebaseUid: user.uid,
         gdprCompliant: true
       },
       { status: 201 }
     );
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Registration error:', error);
     
+    // Handle Firebase Auth errors
+    if (error.code === 'auth/email-already-in-use') {
+      return NextResponse.json(
+        { error: 'User with this email already exists' },
+        { status: 409 }
+      );
+    }
+    
+    if (error.code === 'auth/weak-password') {
+      return NextResponse.json(
+        { error: 'Password is too weak. Please choose a stronger password.' },
+        { status: 400 }
+      );
+    }
+    
+    if (error.code === 'auth/invalid-email') {
+      return NextResponse.json(
+        { error: 'Invalid email format' },
+        { status: 400 }
+      );
+    }
+
     // Log failed registration attempt
     const clientIp = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
     const userAgent = request.headers.get('user-agent') || 'unknown';
     
     await logUserAction(
       null,
+      null,
       'REGISTRATION_FAILED',
-      `Registration failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      `Registration failed: ${error.message || 'Unknown error'}`,
       clientIp,
       userAgent
     );

@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import { auth } from '../../../lib/firabase';
 import { getDbConnection, logUserAction } from '../../../lib/database';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json();
-    
+
     // Validate required fields
     if (!email || !password) {
       return NextResponse.json(
@@ -24,13 +24,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Sign in with Firebase Auth
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
     const connection = getDbConnection();
 
-    // Find user by email
+    // Get user data from MySQL with actual schema
     const [users] = await connection.execute(
-      `SELECT id, email, password_hash, name, role, is_active, 
-              consent_given, data_processing_consent 
-       FROM users WHERE email = ? AND is_active = TRUE`,
+      `SELECT id, firebase_uid, username, email, role, password
+        FROM users WHERE email = ?`,
       [email]
     );
 
@@ -41,8 +44,9 @@ export async function POST(request: NextRequest) {
       
       await logUserAction(
         null,
+        user.uid,
         'LOGIN_FAILED',
-        `Failed login attempt for email: ${email} - User not found`,
+        `Failed login attempt for email: ${email} - User not found in database`,
         clientIp,
         userAgent
       );
@@ -53,20 +57,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const user = users[0] as any;
+    const userData = users[0] as any;
 
-    // Verify password
-    const isValidPassword = await bcrypt.compare(password, user.password_hash);
-    
-    if (!isValidPassword) {
+    // Verify Firebase UID matches
+    if (userData.firebase_uid !== user.uid) {
       // Log failed login attempt
       const clientIp = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
       const userAgent = request.headers.get('user-agent') || 'unknown';
       
       await logUserAction(
-        user.id,
+        userData.id,
+        user.uid,
         'LOGIN_FAILED',
-        'Failed login attempt - Invalid password',
+        'Failed login attempt - Firebase UID mismatch',
         clientIp,
         userAgent
       );
@@ -76,40 +79,14 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       );
     }
-
-    // Check if user has given data processing consent (GDPR)
-    if (!user.data_processing_consent) {
-      return NextResponse.json(
-        { error: 'Data processing consent required. Please contact support.' },
-        { status: 403 }
-      );
-    }
-
-    // Update last login timestamp
-    await connection.execute(
-      'UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ?',
-      [user.id]
-    );
-
-    // Generate JWT token
-    const jwtSecret = process.env.JWT_SECRET || 'fallback-secret-key';
-    const token = jwt.sign(
-      {
-        userId: user.id,
-        email: user.email,
-        role: user.role,
-        name: user.name
-      },
-      jwtSecret,
-      { expiresIn: '24h' }
-    );
 
     // Log successful login
     const clientIp = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
     const userAgent = request.headers.get('user-agent') || 'unknown';
     
     await logUserAction(
-      user.id,
+      userData.id,
+      user.uid,
       'LOGIN_SUCCESS',
       'Successful login',
       clientIp,
@@ -121,27 +98,51 @@ export async function POST(request: NextRequest) {
       {
         message: 'Login successful',
         user: {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          role: user.role
+          id: userData.id,
+          firebaseUid: userData.firebase_uid,
+          username: userData.username,
+          email: userData.email,
+          role: userData.role
         },
-        token
+        token: await user.getIdToken() // Firebase JWT token
       },
       { status: 200 }
     );
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Login error:', error);
     
-    // Log system error
+    // Handle Firebase Auth errors
+    if (error.code === 'auth/user-not-found') {
+      return NextResponse.json(
+        { error: 'User not found' },
+        { status: 404 }
+      );
+    }
+    
+    if (error.code === 'auth/wrong-password') {
+      return NextResponse.json(
+        { error: 'Invalid password' },
+        { status: 401 }
+      );
+    }
+    
+    if (error.code === 'auth/too-many-requests') {
+      return NextResponse.json(
+        { error: 'Too many failed attempts. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
+    // Log failed login attempt
     const clientIp = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
     const userAgent = request.headers.get('user-agent') || 'unknown';
     
     await logUserAction(
       null,
+      null,
       'LOGIN_ERROR',
-      `System error during login: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      `System error during login: ${error.message || 'Unknown error'}`,
       clientIp,
       userAgent
     );
