@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanetPulse - Posts Wireframe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .main-content {
+            padding: 30px;
+        }
+        
+        .create-post-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px dashed #dee2e6;
+        }
+        
+        .create-post-section h2 {
+            color: #495057;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .post-form {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            color: #495057;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .posts-section h2 {
+            color: #495057;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .posts-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .post-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .post-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .author-avatar {
+            width: 35px;
+            height: 35px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .author-info h4 {
+            color: #495057;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+        
+        .post-date {
+            color: #6c757d;
+            font-size: 12px;
+        }
+        
+        .post-category {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .post-title {
+            color: #212529;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .post-content {
+            color: #6c757d;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .post-stats {
+            display: flex;
+            gap: 20px;
+            color: #6c757d;
+            font-size: 12px;
+        }
+        
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .post-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+        }
+        
+        .btn-outline:hover {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .placeholder {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #dee2e6;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 12px;
+        }
+        
+        .filter-btn.active {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+        
+        .filter-btn:hover {
+            border-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🌍 PlanetPulse - Student Posts</h1>
+            <div class="user-info">
+                <span>Welcome, João Silva</span>
+                <div class="avatar">JS</div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Create Post Section -->
+            <div class="create-post-section">
+                <h2>📝 Create New Post</h2>
+                <form class="post-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" placeholder="Enter post title..." />
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select>
+                                <option>Select category...</option>
+                                <option>Environmental Awareness</option>
+                                <option>Sustainability Projects</option>
+                                <option>Green Technology</option>
+                                <option>Climate Action</option>
+                                <option>Eco-friendly Tips</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Content</label>
+                        <textarea rows="4" placeholder="Share your environmental insights, projects, or ideas..."></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Location (Optional)</label>
+                            <input type="text" placeholder="Where is this happening?" />
+                        </div>
+                        <div class="form-group">
+                            <label>Tags (Optional)</label>
+                            <input type="text" placeholder="Add tags separated by commas" />
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">🚀 Publish Post</button>
+                </form>
+            </div>
+            
+            <!-- Posts Section -->
+            <div class="posts-section">
+                <h2>📰 Recent Posts</h2>
+                
+                <!-- Filters -->
+                <div class="filters">
+                    <button class="filter-btn active">All Posts</button>
+                    <button class="filter-btn">Environmental Awareness</button>
+                    <button class="filter-btn">Sustainability Projects</button>
+                    <button class="filter-btn">Green Technology</button>
+                    <button class="filter-btn">Climate Action</button>
+                </div>
+                
+                <!-- Posts Grid -->
+                <div class="posts-grid">
+                    <!-- Post 1 -->
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="post-author">
+                                <div class="author-avatar">MS</div>
+                                <div class="author-info">
+                                    <h4>Maria Santos</h4>
+                                    <div class="post-date">2 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="post-category">Environmental Awareness</div>
+                        </div>
+                        
+                        <h3 class="post-title">Amazing Discovery: New Plant Species in Our Campus!</h3>
+                        <p class="post-content">
+                            During our weekly environmental walk, we discovered a beautiful new plant species 
+                            growing near the library. This highlights the importance of preserving green spaces 
+                            in urban areas. We're working on documenting and protecting this area.
+                        </p>
+                        
+                        <div class="post-footer">
+                            <div class="post-stats">
+                                <div class="stat">👍 24 likes</div>
+                                <div class="stat">💬 8 comments</div>
+                                <div class="stat">📍 Campus Library</div>
+                            </div>
+                            <div class="post-actions">
+                                <button class="btn btn-sm btn-outline">Like</button>
+                                <button class="btn btn-sm btn-outline">Comment</button>
+                                <button class="btn btn-sm btn-outline">Share</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 2 -->
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="post-author">
+                                <div class="author-avatar">AP</div>
+                                <div class="author-info">
+                                    <h4>Ana Pereira</h4>
+                                    <div class="post-date">1 day ago</div>
+                                </div>
+                            </div>
+                            <div class="post-category">Sustainability Projects</div>
+                        </div>
+                        
+                        <h3 class="post-title">Our Solar Panel Project: Phase 1 Complete!</h3>
+                        <p class="post-content">
+                            Great news! We've successfully installed the first set of solar panels on the 
+                            engineering building. This project will reduce our campus carbon footprint by 
+                            approximately 15%. Next phase: expanding to other buildings!
+                        </p>
+                        
+                        <div class="post-footer">
+                            <div class="post-stats">
+                                <div class="stat">👍 42 likes</div>
+                                <div class="stat">💬 15 comments</div>
+                                <div class="stat">📍 Engineering Building</div>
+                            </div>
+                            <div class="post-actions">
+                                <button class="btn btn-sm btn-outline">Like</button>
+                                <button class="btn btn-sm btn-outline">Comment</button>
+                                <button class="btn btn-sm btn-outline">Share</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 3 -->
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="post-author">
+                                <div class="author-avatar">CP</div>
+                                <div class="author-info">
+                                    <h4>Carlos Pinto</h4>
+                                    <div class="post-date">3 days ago</div>
+                                </div>
+                            </div>
+                            <div class="post-category">Green Technology</div>
+                        </div>
+                        
+                        <h3 class="post-title">Innovative Water Recycling System</h3>
+                        <p class="post-content">
+                            Our team developed a smart water recycling system that can save up to 40% of 
+                            water consumption in campus buildings. The system uses AI to optimize water 
+                            usage based on occupancy patterns. Ready for implementation!
+                        </p>
+                        
+                        <div class="post-footer">
+                            <div class="post-stats">
+                                <div class="stat">👍 67 likes</div>
+                                <div class="stat">💬 23 comments</div>
+                                <div class="stat">📍 Innovation Lab</div>
+                            </div>
+                            <div class="post-actions">
+                                <button class="btn btn-sm btn-outline">Like</button>
+                                <button class="btn btn-sm btn-outline">Comment</button>
+                                <button class="btn btn-sm btn-outline">Share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

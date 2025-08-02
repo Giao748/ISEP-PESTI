@@ -26,8 +26,8 @@ export default function LoginPage() {
         localStorage.setItem("user", JSON.stringify(response.data.user));
         localStorage.setItem("token", response.data.token);
         
-        // Redirect to feed page
-        router.push("/feed");
+        // Redirect to posts page
+        router.push("/posts");
       }
     } catch (err: any) {
       if (err.response?.data?.error) {
@@ -46,7 +46,7 @@ export default function LoginPage() {
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-md shadow-md w-full max-w-md"
       >
-        <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
+        <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">Login</h1>
 
         {error && <p className="text-red-500 mb-4 text-sm">{error}</p>}
 
